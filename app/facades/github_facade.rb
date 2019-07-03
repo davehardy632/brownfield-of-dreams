@@ -5,12 +5,10 @@ class GithubFacade
   end
 
   def repos
-    github_data = GithubApiService.new(token)
-    new_response = github_data.repos
-    new_array = new_response.map do |repo|
+    github_data = GithubApiService.new(token).repos
+    github_data.map do |repo|
       Repo.new(repo)
     end
-    new_array
   end
 
   def following
