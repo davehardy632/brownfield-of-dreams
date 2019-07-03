@@ -4,9 +4,7 @@ class GithubApiService
   end
 
   def followers
-    response = conn.get('/user/followers')
-    new_response = parsed_response(response)
-    new_response
+    parsed_response(conn.get('/user/followers'))  
   end
 
   def repos(limit = 5)

@@ -5,12 +5,10 @@ class GithubFacade
   end
 
   def repos
-    github_data = GithubApiService.new(token)
-    new_response = github_data.repos
-    new_array = new_response.map do |repo|
+    github_data = GithubApiService.new(token).repos
+    github_data.map do |repo|
       Repo.new(repo)
     end
-    new_array
   end
 
   def following
@@ -21,11 +19,9 @@ class GithubFacade
   end
 
   def followers
-    github_data = GithubApiService.new(token)
-    new_response = github_data.followers
-    follower_array = new_response.map do |follower|
-      Follower.new(follower)
+    user_data = GithubApiService.new(token).followers
+    user_data.map do |user|
+      FollowerUser.new(user)
     end
-    follower_array
   end
 end
