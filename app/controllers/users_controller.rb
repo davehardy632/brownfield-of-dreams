@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
   def show
+    if current_user.token
     render locals: {
       facade: GithubFacade.new(current_user.token)
     }
+    end
   end
 
   def new

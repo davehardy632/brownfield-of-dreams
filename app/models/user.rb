@@ -7,4 +7,9 @@ class User < ApplicationRecord
   validates_presence_of :first_name
   enum role: %i[default admin]
   has_secure_password
+
+
+  def from_omniauth(auth_info)
+    auth_info["credentials"]["token"]
+  end
 end
