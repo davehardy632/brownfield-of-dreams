@@ -1,13 +1,12 @@
 require 'rails_helper'
-require 'webmock/rspec'
 
 describe GithubApiService do
   before :each do
-    @user = User.create(email: "john@gmail.com", first_name: "John", last_name: "smith", token: ENV['GITHUB_API_KEY'])
+    @user = User.create(email: "john@gmail.com", first_name: "John", last_name: "smith", token: ENV['GITHUB_TOKEN'])
 
-      @service = GithubApiService.new(@user.token)
+    @service = GithubApiService.new(@user.token)
 
-      json_repo_response = File.open("./fixtures/user_repos.json")
+    json_repo_response = File.open("./fixtures/user_repos.json")
       stub_request(:get, "https://api.github.com/user/repos").
            with(
              headers: {
@@ -17,7 +16,7 @@ describe GithubApiService do
              }).
            to_return(status: 200, body: json_repo_response, headers: {})
 
-      json_following_response = File.open("./fixtures/user_following.json")
+    json_following_response = File.open("./fixtures/user_following.json")
       stub_request(:get, "https://api.github.com/user/following").
            with(
              headers: {
@@ -26,6 +25,17 @@ describe GithubApiService do
          	  'User-Agent'=>'Faraday v0.15.4'
              }).
            to_return(status: 200, body: json_following_response, headers: {})
+
+    json_followers_response = File.open("./fixtures/user_followers.json")
+      stub_request(:get, "https://api.github.com/user/followers").
+         with(
+           headers: {
+       	  'Accept'=>'*/*',
+       	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+       	  'Authorization'=>"token #{@user.token}",
+       	  'User-Agent'=>'Faraday v0.15.4'
+           }).
+         to_return(status: 200, body: json_followers_response, headers: {})
 
     end
 
