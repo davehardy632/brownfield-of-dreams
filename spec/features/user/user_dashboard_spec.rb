@@ -1,9 +1,8 @@
 require 'rails_helper'
-require 'webmock/rspec'
 
 describe "As a logged in user, on /dashboard" do
   before :each do
-    @user = User.create(email: "john@gmail.com", first_name: "John", last_name: "smith", token: ENV['GITHUB_API_KEY'])
+    @user = User.create(email: "john@gmail.com", first_name: "John", last_name: "smith", token: ENV['GITHUB_TOKEN'])
 
     @user_2 = create(:user)
 
@@ -66,7 +65,7 @@ describe "As a logged in user, on /dashboard" do
       expect(page).to_not have_css(".github")
     end
 
-    it "Displays list of github users the current user follows, handels are links to profile" do
+    it "Displays list of github users the current user follows, handles are links to profile" do
       within(".github") do
         within(".github-following") do
           expect(page).to have_link("n-flint")
@@ -76,7 +75,7 @@ describe "As a logged in user, on /dashboard" do
         end
       end
     end
-  
+
 
     context "Under the github section" do
       it "There is a section called followers" do
