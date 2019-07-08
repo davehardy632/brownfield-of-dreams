@@ -1,12 +1,12 @@
 class WelcomeController < ApplicationController
   def index
-    if params[:tag] && current_user != nil
+    if params[:tag] && !current_user.nil?
       @tutorials = Tutorial.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 5)
-    elsif current_user != nil
+    elsif !current_user.nil?
       @tutorials = Tutorial.all.paginate(page: params[:page], per_page: 5)
-    elsif params[:tag] && current_user == nil
+    elsif params[:tag] && current_user.nil?
       @tutorials = Tutorial.non_classroom.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 5)
-    elsif current_user == nil
+    elsif current_user.nil?
       @tutorials = Tutorial.non_classroom.paginate(page: params[:page], per_page: 5)
     end
   end

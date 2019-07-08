@@ -8,8 +8,7 @@ class User < ApplicationRecord
   enum role: %i[default admin]
   has_secure_password
 
-
   def from_omniauth(auth_info)
-    auth_info["credentials"]["token"]
+    auth_info['credentials']['token']
   end
 end
