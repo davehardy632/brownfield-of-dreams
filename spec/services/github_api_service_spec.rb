@@ -3,7 +3,7 @@ require 'webmock/rspec'
 
 describe GithubApiService do
   before :each do
-    @user = User.create(email: "john@gmail.com", first_name: "John", last_name: "smith", token: ENV['GITHUB_API_KEY'])
+    @user = User.create(email: "john@gmail.com", first_name: "John", last_name: "smith", token: ENV['GITHUB_TOKEN'])
 
       @service = GithubApiService.new(@user.token)
 
