@@ -1,9 +1,10 @@
 require 'rails_helper'
-require 'webmock/rspec'
 
 describe GithubApiService do
   before :each do
     @user = User.create(email: "john@gmail.com", first_name: "John", last_name: "smith", token: ENV['GITHUB_TOKEN'])
+
+    @service = GithubApiService.new(@user.token)
 
     @user_2 = create(:user)
 
@@ -41,6 +42,17 @@ describe GithubApiService do
            allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
       @service = GithubApiService.new(@user.token)
+
+    json_followers_response = File.open("./fixtures/user_followers.json")
+      stub_request(:get, "https://api.github.com/user/followers").
+         with(
+           headers: {
+       	  'Accept'=>'*/*',
+       	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+       	  'Authorization'=>"token #{@user.token}",
+       	  'User-Agent'=>'Faraday v0.15.4'
+           }).
+         to_return(status: 200, body: json_followers_response, headers: {})
 
     end
 

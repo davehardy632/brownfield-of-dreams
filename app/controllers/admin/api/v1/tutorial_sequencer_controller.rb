@@ -1,14 +1,17 @@
-class Admin::Api::V1::TutorialSequencerController < Admin::Api::V1::BaseController
-  def update
-    tutorial = Tutorial.find(params[:tutorial_id])
-    TutorialSequencer.new(tutorial, ordered_video_ids).run!
+# does not seem to be used, does not hit pry when using rails s.
 
-    render json: tutorial
-  end
+# class Admin::Api::V1::TutorialSequencerController < Admin::Api::V1::BaseController
+#   def update
+#     require 'pry'; binding.pry
+#     tutorial = Tutorial.find(params[:tutorial_id])
+#     TutorialSequencer.new(tutorial, ordered_video_ids).run!
 
-  private
+#     render json: tutorial
+#   end
 
-  def ordered_video_ids
-    params[:tutorial_sequencer][:_json]
-  end
-end
+#   private
+
+#   def ordered_video_ids
+#     params[:tutorial_sequencer][:_json]
+#   end
+# end

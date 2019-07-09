@@ -10,7 +10,6 @@ class User < ApplicationRecord
   enum role: %i[default admin]
   has_secure_password
 
-
   def return_token(auth_info)
     auth_info["credentials"]["token"]
   end

@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'webmock/rspec'
 
 describe "As a logged in user, on /dashboard" do
   before :each do
