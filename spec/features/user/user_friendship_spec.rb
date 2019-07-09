@@ -52,6 +52,7 @@ describe "A user can add a follower/following as a friend" do
       within(first(".following_user")) do
         expect(page).to have_content(@user_2.handle)
         expect(page).to have_content("Add as Friend")
+        click_link "Add as Friend"
       end
       expect(current_path).to eq(dashboard_path)
     end
