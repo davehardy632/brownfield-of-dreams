@@ -1,8 +1,13 @@
 class FriendshipsController < ApplicationController
 
   def create
-    new_friend = User.find_by(handle: params["format"])
-    current_user.friends << new_friend
-    redirect_to dashboard_path
+    if User.find_by(handle: params["handle"]) != nil
+      new_friend = User.find_by(handle: params["handle"])
+      current_user.friends << new_friend
+      redirect_to dashboard_path
+    else
+      flash[:message] = "Invalid User Id"
+      redirect_to dashboard_path
+    end
   end
 end

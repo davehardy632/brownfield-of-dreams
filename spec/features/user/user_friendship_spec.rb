@@ -103,5 +103,18 @@ describe "A user can add a follower/following as a friend" do
         expect(page).to have_content(@user_2.handle)
       end
     end
+
+    describe "Edge case", type: :request do
+      it "if an invalid user id is sent to the frienships controller, there is a flash message of the error" do
+        invalid_handle = "whatevs"
+
+        visit dashboard_path
+
+        post "/friendships", params: {handle: invalid_handle}
+
+        expect(response).to redirect_to(dashboard_path)
+        expect(flash[:message]).to eq("Invalid User Id")
+      end
+    end
   end
 end

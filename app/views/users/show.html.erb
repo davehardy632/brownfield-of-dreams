@@ -34,7 +34,7 @@
         <ul class="following_user">
           <li><%= link_to user.handle, user.url %></li>
           <% if current_user.associated?(user.handle) %>
-          <li class="following_friend_link"><%= link_to "Add as Friend", friendships_path(user.handle), method: :post %></li>
+          <li class="following_friend_link"><%= link_to "Add as Friend", friendships_path(handle: user.handle), method: :post %></li>
           <% end %>
         </ul>
         <% end %>
@@ -46,7 +46,7 @@
         <ul class="follower_user">
           <li class="follower"><%= link_to follower.handle, follower.url %></li>
           <% if current_user.associated?(follower.handle) %>
-          <li class="follower_friend_link"><%= link_to "Add as Friend", friendships_path(follower.handle), method: :post %></li>
+          <li class="follower_friend_link"><%= link_to "Add as Friend", friendships_path(handle: follower.handle), method: :post %></li>
           <% end %>
         </ul>
         <% end %>
