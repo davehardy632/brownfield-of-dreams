@@ -12,4 +12,18 @@ RSpec.describe Video, type: :model do
     it { should have_many(:users).through(:user_videos)}
     it { should belong_to :tutorial}
   end
+
+  describe 'class methods' do 
+    it '.update_positions' do
+      video = create(:video)
+      video.position = nil
+      allow(Video).to receive(:all).and_return([video])
+
+      expect(Video.first.position).to eq(nil)
+
+      Video.update_positions
+
+      expect(Video.first.position).to eq(0)
+    end
+  end
 end
