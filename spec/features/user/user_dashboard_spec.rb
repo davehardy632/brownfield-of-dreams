@@ -3,7 +3,7 @@ require 'webmock/rspec'
 
 describe "As a logged in user, on /dashboard" do
   before :each do
-    @user = User.create(email: "john@gmail.com", first_name: "John", last_name: "smith", token: ENV['GITHUB_API_KEY'])
+    @user = User.create(email: "john@gmail.com", first_name: "John", last_name: "smith", token: ENV['GITHUB_TOKEN'])
 
     @user_2 = create(:user)
 
