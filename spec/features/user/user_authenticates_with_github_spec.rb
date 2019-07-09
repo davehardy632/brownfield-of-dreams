@@ -52,16 +52,18 @@ describe "As a registered user, when I visit my dashboard, /dashboard" do
     it "Shows all github repository info, (five repos, all followers and following) if authenticated with github" do
       OmniAuth.config.test_mode = true
       user = create(:user)
-      auth_info = OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
-                                :provider => 'github',
-                                :uid => '123545',
-                                :credentials => {
-                                  :token => ENV["GITHUB_TOKEN"]
-                                }
-                                })
+      auth_info = OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({"provider"=>"github",
+                                   "uid"=>"42919604",
+                                   "info"=>{"nickname"=>"davehardy632",
+                                   "email"=>nil,
+                                   "name"=>nil,
+                                   "image"=>"https://avatars2.githubusercontent.com/u/42919604?v=4",
+                                   "urls"=>{"GitHub"=>"https://github.com/davehardy632", "Blog"=>""}},
+                                   "credentials"=>{"token"=>ENV["GITHUB_TOKEN"],
+                                   "expires"=>false},
+                                   "extra"=>{"raw_info"=>{"login"=>"davehardy632"}}})
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-
 
       visit dashboard_path
 
