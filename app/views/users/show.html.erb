@@ -22,7 +22,10 @@
       <ul class="github-following">
         <h4>Github Following</h4>
         <% facade.following.each do |user| %>
-        <li class=".following_user"><%= link_to user.handle, user.url %></li>
+        <ul class="following_user">
+          <li><%= link_to user.handle, user.url %></li>
+          <li><%= link_to "Add as Friend", friendships_path(user.handle), method: :post %></li>
+        </ul>
         <% end %>
       </ul>
 

@@ -39,29 +39,8 @@ describe GithubApiService do
              }).
            to_return(status: 200, body: json_following_response, headers: {})
            allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
-    # @user = User.create(email: "john@gmail.com", first_name: "John", last_name: "smith", token: ENV['GITHUB_API_KEY'])
-    #
-    #   @service = GithubApiService.new(@user.token)
-    #
-    #   json_repo_response = File.open("./fixtures/user_repos.json")
-    #   stub_request(:get, "https://api.github.com/user/repos").
-    #        with(
-    #          headers: {
-    #      	  'Accept'=>'*/*',
-    #      	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-    #      	  'User-Agent'=>'Faraday v0.15.4'
-    #          }).
-    #        to_return(status: 200, body: json_repo_response, headers: {})
-    #
-    #   json_following_response = File.open("./fixtures/user_following.json")
-    #   stub_request(:get, "https://api.github.com/user/following").
-    #        with(
-    #          headers: {
-    #      	  'Accept'=>'*/*',
-    #      	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-    #      	  'User-Agent'=>'Faraday v0.15.4'
-    #          }).
-    #        to_return(status: 200, body: json_following_response, headers: {})
+
+      @service = GithubApiService.new(@user.token)
 
     end
 
