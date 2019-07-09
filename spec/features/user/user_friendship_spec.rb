@@ -37,6 +37,7 @@ describe "A user can add a follower/following as a friend" do
                    headers: {
                	  'Accept'=>'*/*',
                	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                  'Authorization'=>"token #{@user.token}",
                	  'User-Agent'=>'Faraday v0.15.4'
                    }).
                  to_return(status: 200, body: json_following_response, headers: {})
@@ -55,14 +56,27 @@ describe "A user can add a follower/following as a friend" do
         click_link "Add as Friend"
       end
       expect(current_path).to eq(dashboard_path)
+
+      expect(page).to have_css(".following_friend_link", count: 1)
     end
   end
+
+  context "if they are a user in the application" do
+    it "There is a link next to their name to add friend" do
+      registered_follower = User.create!(email: "reg_follower@gmail.com", first_name: "Joe", last_name: "Johnson", password: "password", token: "9329ffdf2949239294d93943d3e9343943er1234", handle: "Loomus")
+
+      visit dashboard_path
+
+      within(first(".follower_user")) do
+        expect(page).to have_content(registered_follower.handle)
+        expect(page).to have_content("Add as Friend")
+        click_link "Add as Friend"
+      end
+      expect(current_path).to eq(dashboard_path)
+
+      expect(page).to have_css(".follower_friend_link", count: 1)
+    end
+  end
+
+  context ""
 end
-# within("#review-#{@review_10.id}") do
-#         expect(page).to have_link(@book_1.title)
-#         expect(page).to have_xpath('//img[@src="https://iguhb7lay20b9vtl-zippykid.netdna-ssl.com/wp-content/uploads/2018/04/1_wswf9QNmKrwTB883hHb4BQ.png"]')
-#         expect(page).to have_content(@review_10.title)
-#         expect(page).to have_content(@review_10.description)
-#         expect(page).to have_content(@review_10.rating)
-#         expect(page).to have_content(@review_10.created_at)
-#       end

@@ -24,7 +24,9 @@
         <% facade.following.each do |user| %>
         <ul class="following_user">
           <li><%= link_to user.handle, user.url %></li>
-          <li><%= link_to "Add as Friend", friendships_path(user.handle), method: :post %></li>
+          <% if current_user.associated?(user.handle) %>
+          <li class="following_friend_link"><%= link_to "Add as Friend", friendships_path(user.handle), method: :post %></li>
+          <% end %>
         </ul>
         <% end %>
       </ul>
@@ -32,7 +34,12 @@
       <ul class="github-followers">
         <h4>Github Followers</h4>
         <% facade.followers.each do |follower| %>
-        <li class="follower"><%= link_to follower.handle, follower.url %></li>
+        <ul class="follower_user">
+          <li class="follower"><%= link_to follower.handle, follower.url %></li>
+          <% if current_user.associated?(follower.handle) %>
+          <li class="follower_friend_link"><%= link_to "Add as Friend", friendships_path(follower.handle), method: :post %></li>
+          <% end %>
+        </ul>
         <% end %>
       </ul>
     </div>
