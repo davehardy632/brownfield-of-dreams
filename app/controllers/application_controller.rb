@@ -18,9 +18,11 @@ class ApplicationController < ActionController::Base
     current_user.user_videos.find_by(video_id: id)
   end
 
-  def tutorial_name(id)
-    Tutorial.find(id).title
-  end
+  # this does not hit the pry anywhere in rails s, tutorial videos still show titles properly
+  # def tutorial_name(id)
+  #   require 'pry'; binding.pry
+  #   Tutorial.find(id).title
+  # end
 
   def four_oh_four
     raise ActionController::RoutingError, 'Not Found'

@@ -1,5 +1,6 @@
 require 'faker'
 
+
 RSpec.configure do |config|
 
   config.before(:suite) do
