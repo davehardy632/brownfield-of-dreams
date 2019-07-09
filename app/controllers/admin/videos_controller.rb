@@ -8,6 +8,11 @@ class Admin::VideosController < Admin::BaseController
     video.update(video_params)
   end
 
+  def new
+    @tutorial = Tutorial.find(params['tutorial_id'])
+    @video = Video.new
+  end
+
   def create
     begin
       tutorial  = Tutorial.find(params[:tutorial_id])

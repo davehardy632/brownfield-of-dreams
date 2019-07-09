@@ -1,6 +1,11 @@
 class TutorialsController < ApplicationController
   def show
     tutorial = Tutorial.find(params[:id])
-    @facade = TutorialFacade.new(tutorial, params[:video_id])
+    if tutorial.has_videos?
+      @facade = TutorialFacade.new(tutorial, params[:video_id])
+    else
+      flash[:alert] = 'This tutorial has no videos at this time.'
+      redirect_to root_path
+    end
   end
 end

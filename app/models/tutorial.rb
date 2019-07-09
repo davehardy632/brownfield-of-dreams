@@ -6,4 +6,8 @@ class Tutorial < ApplicationRecord
   def self.non_classroom
     where(classroom: false)
   end
+
+  def has_videos?
+    self.videos != []
+  end
 end
