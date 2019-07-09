@@ -78,5 +78,30 @@ describe "A user can add a follower/following as a friend" do
     end
   end
 
-  context ""
+  context "After adding a friend" do
+    it "theres a section on the dashboard displaying my added friends" do
+      registered_follower = User.create!(email: "reg_follower@gmail.com", first_name: "Joe", last_name: "Johnson", password: "password", token: "9329ffdf2949239294d93943d3e9343943er1234", handle: "Loomus")
+
+      visit dashboard_path
+
+      within(first(".follower_user")) do
+        expect(page).to have_content(registered_follower.handle)
+        expect(page).to have_content("Add as Friend")
+        click_link "Add as Friend"
+      end
+
+      visit dashboard_path
+
+      within(first(".following_user")) do
+        expect(page).to have_content(@user_2.handle)
+        expect(page).to have_content("Add as Friend")
+        click_link "Add as Friend"
+      end
+
+      within(".added_friends") do
+        expect(page).to have_content(registered_follower.handle)
+        expect(page).to have_content(@user_2.handle)
+      end
+    end
+  end
 end
