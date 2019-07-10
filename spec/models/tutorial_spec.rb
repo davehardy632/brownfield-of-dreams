@@ -20,7 +20,6 @@ RSpec.describe Tutorial, type: :model do
     it "#has_videos?" do
       expect(@tutorial_1.has_videos?).to eq(false)
       expect(@tutorial_2.has_videos?).to eq(true)
-      end
     end
   end
 end
