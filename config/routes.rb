@@ -40,6 +40,12 @@ Rails.application.routes.draw do
   # Is this being used?
   get '/video', to: 'video#show'
 
+  # route to activate users
+  post '/activate', to: 'activation#create'
+
+  # route from activation email link
+  # patch '/activate', to: 'users#update'
+
   resources :users, only: [:new, :create, :update, :edit]
 
   resources :tutorials, only: [:show, :index] do
