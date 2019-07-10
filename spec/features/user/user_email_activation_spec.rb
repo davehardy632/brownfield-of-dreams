@@ -28,6 +28,7 @@ RSpec.describe 'as a unactivated user' do
       expect(current_path).to eq(dashboard_path)
       expect(page).to have_content("Logged in as #{email}")
       expect(page).to have_content("This account has not yet been activated. Please check your email.")
+      expect(page).to have_content('Status: Not Active')
     end
     xit 'sees a message after successful email activation' do
       user = create(:user, email: 'email@google.com', password: 'password')
@@ -42,14 +43,12 @@ RSpec.describe 'as a unactivated user' do
 
       expect(current_path).to eq(dashboard_path)
       expect(page).to have_content('Status: Not Active')      
-      click_link 'Visit here to activate your account.'
 
       # visit call back path from activation email?
 
-      expect(current_path).to eq(dashboard_path)
-      expect(page).to have_content('Thank you! Your account is now activated')
-      expect(page).to have_content('Status: Active')
-      require 'pry'; binding.pry
+      # expect(current_path).to eq(dashboard_path)
+      # expect(page).to have_content('Thank you! Your account is now activated')
+      # expect(page).to have_content('Status: Active')
     end
   end
 end
