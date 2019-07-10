@@ -6,7 +6,7 @@ RSpec.describe Tutorial, type: :model do
     @tutorial_2 = create(:tutorial, classroom: true)
     @tutorial_3 = create(:tutorial, classroom: false)
     @tutorial_4 = create(:tutorial, classroom: false)
-    
+
     @video1 = create(:video, tutorial_id: @tutorial_2.id)
   end
 
@@ -20,7 +20,6 @@ RSpec.describe Tutorial, type: :model do
     it "#has_videos?" do
       expect(@tutorial_1.has_videos?).to eq(false)
       expect(@tutorial_2.has_videos?).to eq(true)
-      end
     end
   end
 end
