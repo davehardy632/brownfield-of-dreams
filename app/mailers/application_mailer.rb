@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  default from: 'https://bloc-leaf-31383.herokuapp.com'
   layout 'mailer'
 end
