@@ -62,5 +62,14 @@
 
   <section>
     <h1>Bookmarked Segments</h1>
+      <section class='bookmarks'>
+        <% current_user.sorted_videos.each do |video| %>
+
+          <ul>
+          <li><%= video.title %></li>
+          <li><%= video.thumbnail %></li>
+          </ul>
+        <%end %>
+      </section>
   </section>
 </section>
