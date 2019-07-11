@@ -26,7 +26,7 @@ module PersonalProject
     config.action_mailer.smtp_settings = {
       address:              'smtp.sendgrid.net',
       port:                 '587',
-      domain:               'https://bloc-leaf-31383.herokuapp.com/',
+      domain:               'https://bloc-leaf-31383.herokuapp.com',
       user_name:            ENV["SENDGRID_USERNAME"],
       password:             ENV["SENDGRID_PASSWORD"],
       authentication:       'plain',
