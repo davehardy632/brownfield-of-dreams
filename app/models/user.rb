@@ -25,4 +25,8 @@ class User < ApplicationRecord
       false
     end
   end
+
+  def sorted_videos
+    User.where(id: self.id).joins(videos: :tutorial).select('videos.*, tutorials.id').order('tutorials.id, videos.position')
+  end
 end
