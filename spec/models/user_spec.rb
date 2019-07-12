@@ -39,6 +39,17 @@ RSpec.describe User, type: :model do
       @user_video_2 = UserVideo.create!(user: @user, video: @video_2)
       @user_video_3 = UserVideo.create!(user: @user, video: @video_3)
       @user_video_4 = UserVideo.create!(user: @user, video: @video_4)
+
+      @auth_hash = {"provider"=>"github",
+                                   "uid"=>"42919604",
+                                   "info"=>{"nickname"=>"davehardy632",
+                                   "email"=>nil,
+                                   "name"=>nil,
+                                   "image"=>"https://avatars2.githubusercontent.com/u/42919604?v=4",
+                                   "urls"=>{"GitHub"=>"https://github.com/davehardy632", "Blog"=>""}},
+                                   "credentials"=>{"token"=>'12345testkey',
+                                   "expires"=>false},
+                                   "extra"=>{"raw_info"=>{"login"=>"davehardy632"}}}
     end
 
     it '#sorted_videos' do
@@ -53,18 +64,11 @@ RSpec.describe User, type: :model do
     end
 
     it '#return_token' do
-      auth_hash = {"provider"=>"github",
-                                   "uid"=>"42919604",
-                                   "info"=>{"nickname"=>"davehardy632",
-                                   "email"=>nil,
-                                   "name"=>nil,
-                                   "image"=>"https://avatars2.githubusercontent.com/u/42919604?v=4",
-                                   "urls"=>{"GitHub"=>"https://github.com/davehardy632", "Blog"=>""}},
-                                   "credentials"=>{"token"=>'12345testkey',
-                                   "expires"=>false},
-                                   "extra"=>{"raw_info"=>{"login"=>"davehardy632"}}}
-
-      expect(@user.return_token(auth_hash)).to eq('12345testkey')
+      expect(@user.return_token(@auth_hash)).to eq('12345testkey')
     end 
+
+    it '#return_handle' do
+      expect(@user.return_handle(@auth_hash)).to eq("davehardy632")
+    end
   end
 end
