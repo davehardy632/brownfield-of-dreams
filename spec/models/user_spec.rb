@@ -41,7 +41,7 @@ RSpec.describe User, type: :model do
       @user_video_4 = UserVideo.create!(user: @user, video: @video_4)
     end
 
-    it '.sorted_videos' do
+    it '#sorted_videos' do
       expect(@user.sorted_videos[0].title).to eq(@video_3.title)
       expect(@user.sorted_videos[0].thumbnail).to eq(@video_3.thumbnail)
       expect(@user.sorted_videos[1].title).to eq(@video_2.title)
@@ -51,5 +51,20 @@ RSpec.describe User, type: :model do
       expect(@user.sorted_videos[3].title).to eq(@video_1.title)
       expect(@user.sorted_videos[3].thumbnail).to eq(@video_1.thumbnail)
     end
+
+    it '#return_token' do
+      auth_hash = {"provider"=>"github",
+                                   "uid"=>"42919604",
+                                   "info"=>{"nickname"=>"davehardy632",
+                                   "email"=>nil,
+                                   "name"=>nil,
+                                   "image"=>"https://avatars2.githubusercontent.com/u/42919604?v=4",
+                                   "urls"=>{"GitHub"=>"https://github.com/davehardy632", "Blog"=>""}},
+                                   "credentials"=>{"token"=>'12345testkey',
+                                   "expires"=>false},
+                                   "extra"=>{"raw_info"=>{"login"=>"davehardy632"}}}
+
+      expect(@user.return_token(auth_hash)).to eq('12345testkey')
+    end 
   end
 end
