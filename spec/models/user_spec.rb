@@ -25,7 +25,7 @@ RSpec.describe User, type: :model do
 
   describe 'instance methods' do
     before :each do
-      @user = create(:user)
+      @user = create(:user, handle: 'user-handle')
 
       @tutorial_1 = create(:tutorial)
       @tutorial_2 = create(:tutorial)
@@ -69,6 +69,11 @@ RSpec.describe User, type: :model do
 
     it '#return_handle' do
       expect(@user.return_handle(@auth_hash)).to eq("davehardy632")
+    end
+
+    it '#associated?' do
+      expect(@user.associated?(@user.handle)).to eq(true)
+      expect(@user.associated?('fake-handle')).to eq(false)
     end
   end
 end
