@@ -93,7 +93,7 @@ describe "As a registered user on my dashboard, I click send and invite,I should
 
       expect(current_path).to eq("/dashboard")
 
-      expect(page).to have_content("The Github user you selected doesn't have an email address associated with their account.")
+      expect(page).to have_content("This user doesn't have an email address.")
     end
   end
 end
