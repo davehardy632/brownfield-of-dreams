@@ -50,6 +50,8 @@ describe "A user can add a follower/following as a friend" do
 
       expect(current_path).to eq(dashboard_path)
 
+      expect(page).to have_css(".following_friend_link", count: 1)
+
       within(first(".following_user")) do
         expect(page).to have_content(@user_2.handle)
         expect(page).to have_content("Add as Friend")
@@ -57,7 +59,6 @@ describe "A user can add a follower/following as a friend" do
       end
       expect(current_path).to eq(dashboard_path)
 
-      expect(page).to have_css(".following_friend_link", count: 1)
     end
   end
 
@@ -66,6 +67,8 @@ describe "A user can add a follower/following as a friend" do
       registered_follower = User.create!(email: "reg_follower@gmail.com", first_name: "Joe", last_name: "Johnson", password: "password", token: "9329ffdf2949239294d93943d3e9343943er1234", handle: "Loomus")
 
       visit dashboard_path
+      
+      expect(page).to have_css(".follower_friend_link", count: 1)
 
       within(first(".follower_user")) do
         expect(page).to have_content(registered_follower.handle)
@@ -74,7 +77,6 @@ describe "A user can add a follower/following as a friend" do
       end
       expect(current_path).to eq(dashboard_path)
 
-      expect(page).to have_css(".follower_friend_link", count: 1)
     end
   end
 

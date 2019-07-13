@@ -37,13 +37,20 @@ class User < ApplicationRecord
     .order('tutorials.id, videos.position')
   end
 
-  def not_friends?(user_handle)
-    self.friends.any? do |friend|
-      if friend.handle == user_handle
-        false
-      else
-        true
-      end
+  def friends?(user_handle)
+    if self.friends == []
+      false
+    elsif self.already_friends(user_handle) == true
+      true
+    elsif self.already_friends(user_handle) == false
+      false
     end
   end
+
+  def already_friends(user_handle)
+    self.friends.any? do |friend|
+      friend.handle == user_handle
+    end
+  end
+
 end

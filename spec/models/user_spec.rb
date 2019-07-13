@@ -30,8 +30,8 @@ RSpec.describe User, type: :model do
 
       user.friends << user_2
 
-      expect(user.not_friends?(user_3.handle)).to eq(true)
-      expect(user.not_friends?(user_2.handle)).to eq(false)
+      expect(user.friends?(user_2.handle)).to eq(true)
+      expect(user.friends?(user_3.handle)).to eq(false)
     end
   end
 
