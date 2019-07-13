@@ -19,8 +19,7 @@ class Admin::TutorialsController < Admin::BaseController
   end
 
   def destroy
-    tutorial = Tutorial.find(params[:id])
-    tutorial.destroy
+    Tutorial.find(params[:id]).destroy
     redirect_to admin_dashboard_path
   end
 
