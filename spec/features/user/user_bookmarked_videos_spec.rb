@@ -12,7 +12,7 @@ RSpec.describe 'as a logged in user' do
       video_2 = create(:video, tutorial: tutorial_1, position: 1, thumbnail: 'https://i.ytimg.com/vi/WMgDD2lU5nY/hqdefault.jpg')
       video_3 = create(:video, tutorial: tutorial_1, position: 0, thumbnail: 'https://i.ytimg.com/vi/R5FPYQgB6Zc/hqdefault.jpg')
       video_4 = create(:video, tutorial: tutorial_2, position: 0, thumbnail: 'https://i.ytimg.com/vi/cv1VQ_9OqvE/hqdefault.jpg')
-      
+
       user_video_1 = UserVideo.create!(user: user, video: video_1)
       user_video_2 = UserVideo.create!(user: user, video: video_2)
       user_video_3 = UserVideo.create!(user: user, video: video_3)
@@ -28,17 +28,15 @@ RSpec.describe 'as a logged in user' do
       within('.bookmarks') do
         # And they should be organized by which tutorial they are a part of
         # And the videos should be ordered by their position
-        # expect(page.all('h2')[0]).to eq(tutorial_1.title)
+        expect(page.all('h5')[0]).to have_content(tutorial_1.title)
         expect(page.all("li")[0]).to have_content(video_3.title)
-        expect(page.all("li")[1]).to have_content(video_3.thumbnail)
-        expect(page.all("li")[2]).to have_content(video_2.title)
-        expect(page.all("li")[3]).to have_content(video_2.thumbnail)
+        expect(page.all('h5')[1]).to have_content(tutorial_1.title)
+        expect(page.all("li")[1]).to have_content(video_2.title)
 
-        # expect(page.all('h2')[1]).to eq(tutorial_2.title)
-        expect(page.all("li")[4]).to have_content(video_4.title)
-        expect(page.all("li")[5]).to have_content(video_4.thumbnail)
-        expect(page.all("li")[6]).to have_content(video_1.title)
-        expect(page.all("li")[7]).to have_content(video_1.thumbnail)
+        expect(page.all('h5')[2]).to have_content(tutorial_2.title)
+        expect(page.all("li")[2]).to have_content(video_4.title)
+        expect(page.all('h5')[3]).to have_content(tutorial_2.title)
+        expect(page.all("li")[3]).to have_content(video_1.title)
       end
     end
   end

@@ -26,7 +26,14 @@ class User < ApplicationRecord
     end
   end
 
+  def associated_tutorial(tutorial_id)
+    Tutorial.where(id: tutorial_id)[0]
+  end
+
   def sorted_videos
-    User.where(id: self.id).joins(videos: :tutorial).select('videos.*, tutorials.id').order('tutorials.id, videos.position')
+    User.where(id: self.id)
+    .joins(videos: :tutorial)
+    .select('videos.*, tutorials.id')
+    .order('tutorials.id, videos.position')
   end
 end
