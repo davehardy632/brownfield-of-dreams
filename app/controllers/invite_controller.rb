@@ -1,11 +1,9 @@
 class InviteController < ApplicationController
 
-  def new
-
-  end
+  def new; end
 
   def create
-    user_handle = params["email"]
+    user_handle = params["handle"]
     github_service = GithubApiService.new(current_user.token)
     response = github_service.user_email(user_handle)
       if response[:email] != nil
