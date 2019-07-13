@@ -18,4 +18,14 @@ describe "As a user who is not logged in" do
     expect(page).to_not have_content(@tutorial_2.title)
 
   end
+  it "I cannot see tutorials marked with 'classroom content' from the root path" do
+
+    visit 
+
+    expect(page).to have_content(@tutorial_3.title)
+    expect(page).to have_content(@tutorial_4.title)
+    expect(page).to_not have_content(@tutorial_1.title)
+    expect(page).to_not have_content(@tutorial_2.title)
+
+  end
 end
