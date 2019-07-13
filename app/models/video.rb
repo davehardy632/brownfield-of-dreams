@@ -1,5 +1,4 @@
 class Video < ApplicationRecord
-
   validates_presence_of :title,
                         :description,
                         :position
@@ -10,9 +9,7 @@ class Video < ApplicationRecord
 
   def self.update_positions
     all.map do |video|
-      if video.position == nil
-        video.update_column(:position, 0)
-      end
+      video.update_column(:position, 0) if video.position.nil?
     end
   end
 end
