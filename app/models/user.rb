@@ -37,19 +37,18 @@ class User < ApplicationRecord
   end
 
   def friends?(user_handle)
-    if self.friends == []
+    if friends == []
       false
-    elsif self.already_friends(user_handle) == true
+    elsif already_friends(user_handle) == true
       true
-    elsif self.already_friends(user_handle) == false
+    elsif already_friends(user_handle) == false
       false
     end
   end
 
   def already_friends(user_handle)
-    self.friends.any? do |friend|
+    friends.any? do |friend|
       friend.handle == user_handle
     end
   end
-
 end
