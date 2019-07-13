@@ -1,5 +1,9 @@
+require 'simplecov'
+SimpleCov.start
+
 require 'spec_helper'
 require 'webmock/rspec'
+
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
@@ -27,12 +31,6 @@ Capybara.javascript_driver = :selenium_chrome
 
 Capybara.configure do |config|
   config.default_max_wait_time = 5
-end
-
-SimpleCov.start "rails" do
-  add_filter %r{^/app/helpers/}
-  add_filter %r{^/app/channels/}
-  add_filter %r{^/app/jobs/}
 end
 
 Shoulda::Matchers.configure do |config|

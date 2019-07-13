@@ -8,6 +8,6 @@ class Tutorial < ApplicationRecord
   end
 
   def has_videos?
-    self.videos != []
+    videos != []
   end
 end
