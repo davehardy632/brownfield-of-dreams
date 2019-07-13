@@ -31,8 +31,7 @@ describe 'vister can create an account', :js do
     expect(page).to have_content(@last_name)
     expect(page).to_not have_content('Sign In')
     expect(page).to have_content("Logged in as Jim Bob")
-    expect(page).to have_content("This account has not yet been activated.")
-    expect(page).to have_content("Please check your email.")
+    expect(page).to have_content("Please check your email for account activation")
   end
 
   it 'can not create an account with an invalid username' do
