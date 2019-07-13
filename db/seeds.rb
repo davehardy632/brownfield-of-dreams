@@ -3,7 +3,7 @@ test_tutorial_data = {
   "description"=>"No videos here...",
   "thumbnail"=>"https://www.pinclipart.com/picdir/middle/172-1725953_student-faculty-engagement-video-tutorial-icon-png-clipart.png",
   "playlist_id"=>"PL1Y67f0xPzdN6C-LPuTQ5yzlBoz2joWa5",
-  "classroom"=>false,
+  "classroom"=>true,
 }
 
 test_tutorial = Tutorial.create! test_tutorial_data
