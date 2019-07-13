@@ -17,9 +17,9 @@ RSpec.describe Tutorial, type: :model do
   end
 
   describe "Instance methods" do
-    it "#has_videos?" do
-      expect(@tutorial_1.has_videos?).to eq(false)
-      expect(@tutorial_2.has_videos?).to eq(true)
+    it "#videos?" do
+      expect(@tutorial_1.videos?).to eq(false)
+      expect(@tutorial_2.videos?).to eq(true)
     end
   end
 end
