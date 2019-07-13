@@ -11,7 +11,6 @@ RSpec.describe 'as an admin' do
 
       visit admin_dashboard_path
 
-      save_and_open_page
       expect(Video.all.count).to eq(1)
       expect(Tutorial.all.count).to eq(1)
       within first('.admin-tutorial-card') do
