@@ -12,7 +12,4 @@ class InviteController < ApplicationController
     InviteMailer.invite(user_email, user_handle, current_user).deliver_now
     redirect_to dashboard_path
   end
-
-
-
 end
