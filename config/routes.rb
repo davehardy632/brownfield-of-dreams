@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   get "/users/:id", to: "users#update"
 
+  get "/friendships", to: "friendships#create"
   post "/friendships", to: "friendships#create"
 
   namespace :admin do
