@@ -20,13 +20,11 @@ RSpec.describe 'as a logged in user' do
 
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-      # When I visit '/dashboard'
+
       visit dashboard_path
-      # require 'pry'; binding.pry
-      # Then I should see a list of all bookmarked segments under the Bookmarked Segments section
+
       within('.bookmarks') do
-        # And they should be organized by which tutorial they are a part of
-        # And the videos should be ordered by their position
+
         expect(page.all('h5')[0]).to have_content(tutorial_1.title)
         expect(page.all("li")[0]).to have_content(video_3.title)
         expect(page.all('h5')[1]).to have_content(tutorial_1.title)
