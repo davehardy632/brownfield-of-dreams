@@ -47,7 +47,6 @@ describe "As a registered user on my dashboard, I click send and invite,I should
            headers: {
        	  'Accept'=>'*/*',
        	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-       	  'Authorization'=>'token f6b5c1edd239b0598cef2a8acc2e748658bb687d',
        	  'User-Agent'=>'Faraday v0.15.4'
            }).
          to_return(status: 200, body: json_user_info_response, headers: {})
@@ -59,7 +58,6 @@ describe "As a registered user on my dashboard, I click send and invite,I should
            headers: {
        	  'Accept'=>'*/*',
        	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-       	  'Authorization'=>'token f6b5c1edd239b0598cef2a8acc2e748658bb687d',
        	  'User-Agent'=>'Faraday v0.15.4'
            }).
          to_return(status: 200, body: json_non_email_response, headers: {})

@@ -39,7 +39,7 @@
         <% facade.following.each do |user| %>
         <ul class="following_user">
           <li><%= link_to user.handle, user.url %></li>
-          <% if current_user.associated?(user.handle) %>
+          <% if current_user.associated?(user.handle) && current_user.not_friends?(follower.handle) %>
           <li class="following_friend_link"><%= link_to "Add as Friend", friendships_path(handle: user.handle), method: :post %></li>
           <% end %>
         </ul>
@@ -51,7 +51,7 @@
         <% facade.followers.each do |follower| %>
         <ul class="follower_user">
           <li class="follower"><%= link_to follower.handle, follower.url %></li>
-          <% if current_user.associated?(follower.handle) %>
+          <% if current_user.associated?(follower.handle) && current_user.not_friends?(follower.handle) %>
           <li class="follower_friend_link"><%= link_to "Add as Friend", friendships_path(handle: follower.handle), method: :post %></li>
           <% end %>
         </ul>

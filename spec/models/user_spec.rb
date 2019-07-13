@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+
 RSpec.describe User, type: :model do
   describe 'validations' do
     it {should validate_presence_of(:email)}
@@ -9,7 +10,7 @@ RSpec.describe User, type: :model do
 
   describe 'roles' do
     it 'can be created as default user' do
-      user = User.create(email: 'user@email.com', password: 'password', first_name:'Jim', role: 0)
+      user = User.create!(email: 'user@email.com', password: 'password', first_name:'Jim', role: 0)
 
       expect(user.role).to eq('default')
       expect(user.default?).to be_truthy
@@ -20,6 +21,17 @@ RSpec.describe User, type: :model do
 
       expect(admin.role).to eq('admin')
       expect(admin.admin?).to be_truthy
+    end
+
+    it ".friends?" do
+      user = User.create!(first_name: "Tim", last_name: "Smith", email: "timemail@gmail.com", password: "password", handle: "asdf")
+      user_2 = User.create!(first_name: "Jim", last_name: "Person", email: "jimmail@gmail.com", password: "password", handle: "whatevs")
+      user_3 = User.create!(first_name: "Dan", last_name: "Humanoid", email: "danmail@gmail.com", password: "password", handle: "eyyyyy")
+
+      user.friends << user_2
+
+      expect(user.not_friends?(user_3.handle)).to eq(true)
+      expect(user.not_friends?(user_2.handle)).to eq(false)
     end
   end
 
@@ -34,7 +46,7 @@ RSpec.describe User, type: :model do
       @video_2 = create(:video, tutorial: @tutorial_1, position: 1)
       @video_3 = create(:video, tutorial: @tutorial_1, position: 0)
       @video_4 = create(:video, tutorial: @tutorial_2, position: 0)
-      
+
       @user_video_1 = UserVideo.create!(user: @user, video: @video_1)
       @user_video_2 = UserVideo.create!(user: @user, video: @video_2)
       @user_video_3 = UserVideo.create!(user: @user, video: @video_3)

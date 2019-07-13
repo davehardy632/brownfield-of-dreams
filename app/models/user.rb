@@ -36,4 +36,14 @@ class User < ApplicationRecord
     .select('videos.*, tutorials.id')
     .order('tutorials.id, videos.position')
   end
+
+  def not_friends?(user_handle)
+    self.friends.any? do |friend|
+      if friend.handle == user_handle
+        false
+      else
+        true
+      end
+    end
+  end
 end
