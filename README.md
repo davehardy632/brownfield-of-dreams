@@ -46,7 +46,11 @@ Set up the database
 $ rake db:create
 $ rake db:migrate
 $ rake db:seed
-```
+
+To Run the Test Suite, you must sign up for a github api token and put in application.yml
+AS follows
+
+GITHUB_TOKEN: "Whatever your token value is"
 
 Run the test suite:
 ```ruby
@@ -65,3 +69,5 @@ $ bundle exec rspec
 ### Versions
 * Ruby 2.4.1
 * Rails 5.2.0
+
+The Oauth, Github API, and email functionality for this application was developed by David Hardy and Noah Flint.
