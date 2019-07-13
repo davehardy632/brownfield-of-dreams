@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe GithubApiService do
   before :each do
+
     WebMock.disable!
     @user = User.create(email: "john@gmail.com", first_name: "John", last_name: "smith", token: ENV['GITHUB_TOKEN'])
 
