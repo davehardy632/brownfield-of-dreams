@@ -26,3 +26,6 @@ Naming/MemoizedInstanceVariableName:
 Metrics/LineLength:
  # Ignore class definitions and comments
  IgnoredPatterns: ['^class .*','^\s*\# .*']
+
+Metrics/AbcSize:
+ Enabled: false
