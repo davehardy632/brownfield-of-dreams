@@ -3,6 +3,10 @@ class GithubApiService
     @token = token
   end
 
+  def user_email(handle)
+    parsed_response(conn.get("/users/#{handle}"))
+  end
+
   def followers
     parsed_response(conn.get('/user/followers'))
   end
