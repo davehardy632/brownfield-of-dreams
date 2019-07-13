@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    if params[:tag] && !current_user.nil?
+    if params[:tag] && current_user
       @tutorials = Tutorial.tagged_with(params[:tag])
                            .paginate(page: params[:page], per_page: 5)
     elsif current_user
