@@ -22,7 +22,6 @@ RSpec.describe 'as a logged in user' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
       # When I visit '/dashboard'
       visit dashboard_path
-      save_and_open_page
       # require 'pry'; binding.pry
       # Then I should see a list of all bookmarked segments under the Bookmarked Segments section
       within('.bookmarks') do
