@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_admin?
-    @current_user != nil && current_user.role == 'admin'
+    !@current_user.nil? && current_user.role == 'admin'
   end
 
   def find_bookmark(id)

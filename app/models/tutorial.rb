@@ -7,7 +7,7 @@ class Tutorial < ApplicationRecord
     where(classroom: false)
   end
 
-  def has_videos?
-    self.videos != []
+  def videos?
+    videos != []
   end
 end

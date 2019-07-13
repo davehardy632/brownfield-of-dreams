@@ -11,11 +11,11 @@ class User < ApplicationRecord
   has_secure_password
 
   def return_token(auth_info)
-    auth_info["credentials"]["token"]
+    auth_info['credentials']['token']
   end
 
   def return_handle(auth_info)
-    auth_info["extra"]["raw_info"]["login"]
+    auth_info['extra']['raw_info']['login']
   end
 
   def associated?(user_handle)
@@ -31,10 +31,9 @@ class User < ApplicationRecord
   end
 
   def sorted_videos
-    User.where(id: self.id)
-    .joins(videos: :tutorial)
-    .select('videos.*, tutorials.id')
-    .order('tutorials.id, videos.position')
+    User.where(id: id).joins(videos: :tutorial)
+        .select('videos.*, tutorials.id')
+        .order('tutorials.id, videos.position')
   end
 
   def friends?(user_handle)
