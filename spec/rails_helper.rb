@@ -1,4 +1,9 @@
+require 'simplecov'
+SimpleCov.start
+
 require 'spec_helper'
+require 'webmock/rspec'
+
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
@@ -6,7 +11,6 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 # require 'vcr'
-# require 'webmock/rspec'
 #
 # VCR.configure do |config|
 #   config.ignore_localhost = true
@@ -28,8 +32,6 @@ Capybara.javascript_driver = :selenium_chrome
 Capybara.configure do |config|
   config.default_max_wait_time = 5
 end
-
-SimpleCov.start "rails"
 
 Shoulda::Matchers.configure do |config|
     config.integrate do |with|

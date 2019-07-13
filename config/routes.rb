@@ -13,12 +13,21 @@ Rails.application.routes.draw do
   get "/auth/github", as: :github_login
   get '/auth/github/callback', to: 'github_sessions#create'
 
+  get "/invite", to: "invite#new"
+  post "/invite", to: "invite#create"
+  get "/invite", to: "invite#update"
+
+  get "/users/:id", to: "users#update"
+
+  get "/friendships", to: "friendships#create"
+  post "/friendships", to: "friendships#create"
+
   namespace :admin do
     get "/dashboard", to: "dashboard#show"
     resources :tutorials, only: [:create, :edit, :update, :destroy, :new] do
-      resources :videos, only: [:create]
+      resources :videos, only: [:create, :new]
     end
-    resources :videos, only: [:edit, :update, :destroy]
+    resources :videos, only: [:edit, :update, :destroy, :new]
 
     namespace :api do
       namespace :v1 do

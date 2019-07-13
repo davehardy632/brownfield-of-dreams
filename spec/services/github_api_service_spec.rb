@@ -1,32 +1,12 @@
 require 'rails_helper'
-require 'webmock/rspec'
 
 describe GithubApiService do
   before :each do
+
+    WebMock.disable!
     @user = User.create(email: "john@gmail.com", first_name: "John", last_name: "smith", token: ENV['GITHUB_TOKEN'])
 
-      @service = GithubApiService.new(@user.token)
-
-      json_repo_response = File.open("./fixtures/user_repos.json")
-      stub_request(:get, "https://api.github.com/user/repos").
-           with(
-             headers: {
-         	  'Accept'=>'*/*',
-         	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-         	  'User-Agent'=>'Faraday v0.15.4'
-             }).
-           to_return(status: 200, body: json_repo_response, headers: {})
-
-      json_following_response = File.open("./fixtures/user_following.json")
-      stub_request(:get, "https://api.github.com/user/following").
-           with(
-             headers: {
-         	  'Accept'=>'*/*',
-         	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-         	  'User-Agent'=>'Faraday v0.15.4'
-             }).
-           to_return(status: 200, body: json_following_response, headers: {})
-
+    @service = GithubApiService.new(@user.token)
     end
 
     it "exists" do
@@ -51,7 +31,7 @@ describe GithubApiService do
       expect(following).to have_key :html_url
     end
   end
-  
+
   context "#followers" do
     it "returns all github follower handles, and links to their github accounts" do
       follower_data = @service.followers[0]
