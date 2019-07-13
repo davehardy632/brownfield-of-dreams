@@ -1,6 +1,8 @@
 <section class="dashboard-main">
   <h1> <%= current_user.first_name %>'s Dashboard </h1>
 
+  <%= link_to "Send an Invite", "/invite" %>
+
   <% if current_user.active %>
   <h3>Status: Active</h3>
   <% end %>
@@ -64,10 +66,10 @@
     <h1>Bookmarked Segments</h1>
       <section class='bookmarks'>
         <% current_user.sorted_videos.each do |video| %>
-
           <ul>
-          <li><%= video.title %></li>
-          <li><%= video.thumbnail %></li>
+          <h5>Tutorial Title: <%= current_user.associated_tutorial(video.id).title %></h5>
+          <li>Video Title: <%= video.title %></li>
+          <img class"thumbnail" src= <%= "#{video.thumbnail}" %> alt="">
           </ul>
         <%end %>
       </section>

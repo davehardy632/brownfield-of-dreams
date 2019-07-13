@@ -9,7 +9,8 @@ describe 'vister can create an account', :js do
     @password = 'password'
     @password_confirmation = 'password'
   end
-  it ' visits can create an account' do
+
+  it ' visitors can create an account' do
     visit '/'
 
     click_on 'Register'
